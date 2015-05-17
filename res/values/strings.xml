@@ -7,6 +7,7 @@
     <string name="prassometro">Prassometro</string>
     <string name="clean">Clean Level</string>
     <string name="share">Share App</string>
-    <string name="text_to_share">Se liga no prassometro</string>
+    <string name="text_to_share">Se liga no Prassometro</string>
+    <string name="title_activity_splash">Prassometro</string>
 
 </resources>
