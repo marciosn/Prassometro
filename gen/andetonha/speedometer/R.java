@@ -8,28 +8,28 @@ package andetonha.speedometer;
 
 public final class R {
 	public static final class attr {
-		public static final int labelTextSize = 0x7f010002;
-		public static final int maxSpeed = 0x7f010000;
-		public static final int speed = 0x7f010001;
+		public static final int labelTextSize = 0x7f010028;
+		public static final int maxSpeed = 0x7f010026;
+		public static final int speed = 0x7f010027;
 	}
 	public static final class dimen {
-		public static final int activity_horizontal_margin = 0x7f050000;
-		public static final int activity_vertical_margin = 0x7f050001;
+		public static final int activity_horizontal_margin = 0x7f090000;
+		public static final int activity_vertical_margin = 0x7f090001;
 	}
 	public static final class drawable {
-		public static final int spot_mask = 0x7f020006;
+		public static final int spot_mask = 0x7f020026;
 	}
 	public static final class string {
-		public static final int action_settings = 0x7f060002;
-		public static final int app_name = 0x7f060000;
-		public static final int hello_world = 0x7f060001;
+		public static final int action_settings = 0x7f060028;
+		public static final int app_name = 0x7f060026;
+		public static final int hello_world = 0x7f060027;
 	}
 	public static final class style {
-		public static final int AppBaseTheme = 0x7f070000;
-		public static final int AppTheme = 0x7f070001;
+		public static final int AppBaseTheme = 0x7f050005;
+		public static final int AppTheme = 0x7f050006;
 	}
 	public static final class styleable {
-		public static final int[] SpeedometerView = { 0x7f010000, 0x7f010001, 0x7f010002 };
+		public static final int[] SpeedometerView = { 0x7f010026, 0x7f010027, 0x7f010028 };
 		public static final int SpeedometerView_labelTextSize = 2;
 		public static final int SpeedometerView_maxSpeed = 0;
 		public static final int SpeedometerView_speed = 1;

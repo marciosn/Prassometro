@@ -17,6 +17,11 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+
 public class MainActivity extends Activity {
 	private static final String URL = "";
 	private Double MAXIMO = 0.0;
@@ -34,6 +39,7 @@ public class MainActivity extends Activity {
 	private ImageButton cazalbe_level;
 	private TextView name;
 	private TextView level;
+	private InterstitialAd interstitial;
 	final Runnable updater = new Runnable() {
 
 		public void run() {
@@ -50,10 +56,10 @@ public class MainActivity extends Activity {
 		
 		
 		try {
-			//toolbar = (RelativeLayout) findViewById(R.id.toolbar);
+			carregarADS_Banner();
+			carregarADS_Interticial();
 			level = (TextView) findViewById(R.id.level_maximo2);
 			name = (TextView) findViewById(R.id.level_maximo);
-			//fonte = Typeface.createFromAsset(getAssets(), "fonts/Oxygen-Bold.ttf");
 			name.setTypeface(fonte);
 			speedometer = (SpeedometerView) findViewById(R.id.speedometer);
 			cazalbe_level = (ImageButton) findViewById(R.id.cazalbe_level);
@@ -107,6 +113,12 @@ public class MainActivity extends Activity {
 	public void onPause() {
 		super.onPause();
 		stopRecorder();
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		displayInterstitial();
 	}
 
 	public void startRecorder() {
@@ -226,4 +238,38 @@ public class MainActivity extends Activity {
 		sendIntent.setType("text/plain");
 		startActivity(sendIntent);
 	}
+
+	public void carregarADS_Banner(){
+		try {
+			RelativeLayout banneCANTADASDET = (RelativeLayout) findViewById(R.id.banner);
+			AdView ads = new AdView(this);
+			ads.setAdSize(AdSize.SMART_BANNER);
+			ads.setAdUnitId("ca-app-pub-4967173191053190/3238427861");
+			AdRequest request = new AdRequest.Builder().build();
+			request.isTestDevice(this);
+			banneCANTADASDET.addView(ads);
+			ads.loadAd(request);
+		} catch (Exception e) {
+			Log.e("carregarADS_Banner", e.getMessage());
+		}
+	}
+	
+	 public void carregarADS_Interticial(){
+			try {
+				interstitial = new InterstitialAd(MainActivity.this);
+				interstitial.setAdUnitId("ca-app-pub-4967173191053190/6315671865");
+				
+				AdRequest request = new AdRequest.Builder().build();
+				request.isTestDevice(MainActivity.this);
+				interstitial.loadAd(request);
+				
+			} catch (Exception e) {
+				Log.e("carregarADS_Interticial", e.getMessage());
+			}
+	}
+	 public void displayInterstitial() {
+		  if (interstitial.isLoaded()) {
+			  interstitial.show();
+		   }
+	 }
 }

@@ -4,15 +4,8 @@
     android:layout_height="match_parent"
     tools:context="com.andetonha.prassometro.MainActivity">
 
-    <!-- <andetonha.speedometer.SpeedometerView
-        android:id="@+id/speedometer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:padding="8dp" /> -->
-
     <RelativeLayout
+        android:id="@+id/prassometro_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
@@ -31,7 +24,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:text="Small Text"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <Button
@@ -55,28 +47,6 @@
             android:background="@null"
             android:src="@drawable/prassa" />
 
-        <!-- <RelativeLayout
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_alignParentTop="true"
-            android:background="@color/ReligiaColor" >
-
-            <TextView
-                android:id="@+id/prassometro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:gravity="center"
-                android:text="@string/prassometro"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/White"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-        </RelativeLayout> -->
-
         <Button
             android:id="@+id/button1"
             style="?android:attr/buttonStyleSmall"
@@ -94,8 +64,15 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/level_maximo"
             android:layout_centerHorizontal="true"
-            android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <RelativeLayout
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_above="@+id/button2"
+            android:layout_alignParentLeft="true">
+        </RelativeLayout>
 
     </RelativeLayout>
 
