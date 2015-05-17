@@ -3,6 +3,7 @@ package com.andetonha.prassometro;
 import andetonha.speedometer.SpeedometerView;
 import andetonha.speedometer.SpeedometerView.LabelConverter;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
@@ -10,23 +11,29 @@ import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
+	private static final String URL = "";
+	private Double MAXIMO = 0.0;
+	private Double NEW = 0.0;
 	private Typeface fonte;
 	private MediaPlayer mediaPlayer;
 	private SpeedometerView speedometer;
 	private static final String DEBUG = "[DEBUG]";
-	private RelativeLayout toolbar;
+	//private RelativeLayout toolbar;
 	private MediaRecorder mRecorder;
 	private static double mEMA = 0.0;
 	private static final double EMA_FILTER = 0.6;
 	private Thread runner;
 	private ImageButton cazalbe;
+	private ImageButton cazalbe_level;
 	private TextView name;
+	private TextView level;
 	final Runnable updater = new Runnable() {
 
 		public void run() {
@@ -43,12 +50,13 @@ public class MainActivity extends Activity {
 		
 		
 		try {
-			toolbar = (RelativeLayout) findViewById(R.id.toolbar);
-			name = (TextView) findViewById(R.id.prassometro);
-			fonte = Typeface.createFromAsset(getAssets(), "fonts/Oxygen-Bold.ttf");
+			//toolbar = (RelativeLayout) findViewById(R.id.toolbar);
+			level = (TextView) findViewById(R.id.level_maximo2);
+			name = (TextView) findViewById(R.id.level_maximo);
+			//fonte = Typeface.createFromAsset(getAssets(), "fonts/Oxygen-Bold.ttf");
 			name.setTypeface(fonte);
 			speedometer = (SpeedometerView) findViewById(R.id.speedometer);
-			cazalbe = (ImageButton) findViewById(R.id.cazalbe);
+			cazalbe_level = (ImageButton) findViewById(R.id.cazalbe_level);
 			
 			speedometer.setLabelConverter(new LabelConverter() {
 				
@@ -139,13 +147,33 @@ public class MainActivity extends Activity {
 
 	public void updateTv() {
 		Double db = (getAmplitude() /350);
+		NEW = db;
+		
 		speedometer.setSpeed(db + 1, 900, 0);
+		
+		if(NEW > MAXIMO){
+			MAXIMO = NEW;
+			level.setText("Level: " + MAXIMO);
+		}
+		if(MAXIMO > 2 && MAXIMO <= 25){
+			name.setText("LIGHT");
+			cazalbe_level.setImageResource(R.drawable.cazalbe01);
+		}
+		if(MAXIMO > 25 && MAXIMO <= 50){
+			name.setText("MEDIUM");
+			cazalbe_level.setImageResource(R.drawable.cazalbe02);
+		}
+		if(MAXIMO > 50 && MAXIMO <= 75){
+			name.setText("HARD");
+			cazalbe_level.setImageResource(R.drawable.cazalbe03);
+		}
 		if(db >= 90){
-			toolbar.setBackgroundColor(Color.RED);
+			//toolbar.setBackgroundColor(Color.RED);
 			name.setText("THE FINAL PRASSADOWN");
+			cazalbe_level.setImageResource(R.drawable.cazalbe04);
 			theFinalPrassaDownPlay();
 		}
-		if(db < 5){
+		if(db == 0 ){
 			name.setText("Prassometro");
 		}
 	}
@@ -174,6 +202,10 @@ public class MainActivity extends Activity {
 		return 20 * Math.log10(getAmplitudeEMA() / ampl);
 	}
 
+	public void cleanLevel(View view){
+		MAXIMO = 0.0;
+	}
+	
 	public double getAmplitude() {
 		if (mRecorder != null)
 			return mRecorder.getMaxAmplitude();
@@ -185,5 +217,13 @@ public class MainActivity extends Activity {
 		double amp = getAmplitude();
 		mEMA = EMA_FILTER * amp + (1.0 - EMA_FILTER) * mEMA;
 		return mEMA;
+	}
+	
+	public void shareStatus(View v) {
+		Intent sendIntent = new Intent();
+		sendIntent.setAction(Intent.ACTION_SEND);
+		sendIntent.putExtra(Intent.EXTRA_TEXT, getResources().getString(R.string.text_to_share) + "\n" + URL);
+		sendIntent.setType("text/plain");
+		startActivity(sendIntent);
 	}
 }

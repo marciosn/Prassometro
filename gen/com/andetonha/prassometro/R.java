@@ -230,19 +230,22 @@ containing a value of this type.
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int cazalbe12=0x7f020000;
-        public static final int cazalbe22=0x7f020001;
-        public static final int cazalbe32=0x7f020002;
-        public static final int cazalbe42=0x7f020003;
+        public static final int cazalbe01=0x7f020000;
+        public static final int cazalbe02=0x7f020001;
+        public static final int cazalbe03=0x7f020002;
+        public static final int cazalbe04=0x7f020003;
         public static final int ic_launcher=0x7f020004;
-        public static final int spot_mask=0x7f020005;
+        public static final int prassa=0x7f020005;
+        public static final int spot_mask=0x7f020006;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0004;
-        public static final int cazalbe=0x7f0a0000;
-        public static final int prassometro=0x7f0a0003;
-        public static final int speedometer=0x7f0a0001;
-        public static final int toolbar=0x7f0a0002;
+        public static final int action_settings=0x7f0a0006;
+        public static final int button1=0x7f0a0003;
+        public static final int button2=0x7f0a0002;
+        public static final int cazalbe_level=0x7f0a0004;
+        public static final int level_maximo=0x7f0a0001;
+        public static final int level_maximo2=0x7f0a0005;
+        public static final int speedometer=0x7f0a0000;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -256,8 +259,11 @@ containing a value of this type.
     public static final class string {
         public static final int action_settings=0x7f060002;
         public static final int app_name=0x7f060000;
+        public static final int clean=0x7f060004;
         public static final int hello_world=0x7f060001;
         public static final int prassometro=0x7f060003;
+        public static final int share=0x7f060005;
+        public static final int text_to_share=0x7f060006;
     }
     public static final class style {
         /** 
